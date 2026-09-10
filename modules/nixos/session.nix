@@ -12,7 +12,13 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.gnome-keyring];
-    config.common."org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+    extraPortals = [
+      pkgs.gnome-keyring
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config.common = {
+      "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+      "org.freedesktop.impl.portal.Background" = ["gnome"];
+    };
   };
 }
