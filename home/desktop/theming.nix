@@ -1,6 +1,4 @@
-{ pkgs, ...}:
-
-let
+{pkgs, ...}: let
   mkQtctSettings = name: {
     Appearnce = {
       color_scheme_path = "$HOME/.config/${name}/colors/noctalia.conf";
@@ -28,9 +26,7 @@ let
       force_raster_widgets = 1;
     };
   };
-in
-
-{
+in {
   gtk = {
     gtk2 = {
       extraConfig = ''
@@ -44,7 +40,7 @@ in
         gtk-xft-hinting=1
         gtk-xft-hintstyle="hintslight"
         gtk-xft-rgba="rgb"
-        '';
+      '';
     };
     gtk3 = {
       colorScheme = "dark";

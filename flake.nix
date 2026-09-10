@@ -10,39 +10,34 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      mkHost =
-        hostName:
-        let
-          host = import ./hosts/${hostName}/variables.nix // { inherit hostName; };
-        in
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs host; };
-          modules = [
-            ./hosts/${hostName}/configuration.nix
-
-            { nixpkgs.overlays = [ (import ./overlays) ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs host; };
-              home-manager.users.${host.username} = import ./home;
-            }
-          ];
-        };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    mkHost = hostName: let
+      host = import ./hosts/${hostName}/variables.nix // {inherit hostName;};
     in
-    {
-      nixosConfigurations.laptop = mkHost "laptop";
-      nixosConfigurations.desktop = mkHost "desktop";
-    };
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs host;};
+        modules = [
+          ./hosts/${hostName}/configuration.nix
+
+          {nixpkgs.overlays = [(import ./overlays)];}
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs host;};
+            home-manager.users.${host.username} = import ./home;
+          }
+        ];
+      };
+  in {
+    nixosConfigurations.laptop = mkHost "laptop";
+    nixosConfigurations.desktop = mkHost "desktop";
+  };
 }

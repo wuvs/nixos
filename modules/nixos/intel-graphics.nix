@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
-{
-  services.xserver.videoDrivers = [ "modesetting" ];
+{pkgs, ...}: {
+  services.xserver.videoDrivers = ["modesetting"];
 
   hardware.graphics = {
     enable = true;

@@ -1,6 +1,8 @@
-{ host, ... }:
-
 {
+  host,
+  pkgs,
+  ...
+}: {
   imports = [
     ./ai/claude.nix
     ./apps
@@ -17,6 +19,11 @@
 
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
+
+  home.packages = with pkgs; [
+    nixd
+    alejandra
+  ];
 
   home.stateVersion = host.stateVersion;
 

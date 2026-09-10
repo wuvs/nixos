@@ -1,6 +1,8 @@
-{ host, lib, ... }:
-
 {
+  host,
+  lib,
+  ...
+}: {
   i18n.defaultLocale = host.defaultLocale;
 
   i18n.extraLocaleSettings = {
@@ -20,8 +22,7 @@
     "flakes"
   ];
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
+  nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "1password"
       "1password-cli"

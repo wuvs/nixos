@@ -1,6 +1,8 @@
-{ host, pkgs, ... }:
-
 {
+  host,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -12,6 +14,7 @@
     ../../modules/nixos/fingerprint.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/networking.nix
+    ../../modules/nixos/nix-ld.nix
     ../../modules/nixos/nix-settings.nix
     ../../modules/nixos/noctalia.nix
     ../../modules/nixos/nvidia.nix
@@ -30,12 +33,9 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    nixd
-    nil
     curl
     brightnessctl
   ];
 
   system.stateVersion = host.stateVersion;
-
 }

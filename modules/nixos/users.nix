@@ -1,6 +1,8 @@
-{ host, pkgs, ... }:
-
 {
+  host,
+  pkgs,
+  ...
+}: {
   users.users.${host.username} = {
     isNormalUser = true;
     description = host.username;

@@ -1,8 +1,6 @@
-{ ... }:
-
-{
+{...}: {
   programs.noctalia = {
-      enable = true;
-      recommendedServices.enable = true;
-    };
+    enable = true;
+    recommendedServices.enable = true;
+  };
 }

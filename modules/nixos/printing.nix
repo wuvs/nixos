@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.printing = {
     enable = true;
     drivers = with pkgs; [
@@ -16,5 +14,5 @@
     openFirewall = true;
   };
 
-  environment.systemPackages = [ pkgs.cups-pdf-to-pdf ];
+  environment.systemPackages = [pkgs.cups-pdf-to-pdf];
 }

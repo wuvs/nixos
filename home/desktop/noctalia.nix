@@ -1,6 +1,4 @@
-{ host, ... }:
-
-{
+{host, ...}: {
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
@@ -11,7 +9,7 @@
       desktop_widgets.enabled = false;
 
       idle = {
-        behavior_order = [ "lock" "screen-off" "lock-and-suspend" ];
+        behavior_order = ["lock" "screen-off" "lock-and-suspend"];
         behavior = {
           lock = {
             action = "lock";
@@ -36,7 +34,7 @@
       lockscreen_widgets = {
         enabled = false;
         schema_version = 2;
-        widget_order = [ "lockscreen-login-box@${host.monitor}" ];
+        widget_order = ["lockscreen-login-box@${host.monitor}"];
 
         grid = {
           cell_size = 16;
@@ -87,8 +85,8 @@
         wallpaper_scheme = "m3-content";
 
         templates = {
-          builtin_ids = [ "btop" "gtk3" "gtk4" "hyprland" "kitty" "qt" ];
-          community_ids = [ "claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf" ];
+          builtin_ids = ["btop" "gtk3" "gtk4" "hyprland" "kitty" "qt"];
+          community_ids = ["claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf"];
         };
       };
 
