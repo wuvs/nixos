@@ -1,3 +1,10 @@
 {...}: {
-  services.podman.enable = true;
+  services.podman = {
+    enable = true;
+    settings = {
+      registries.search = [
+        "docker.io"
+      ];
+    };
+  };
 }
