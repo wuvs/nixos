@@ -13,6 +13,7 @@
         "copyfile"
         "copybuffer"
         "dirhistory"
+        "podman"
       ];
     };
     autosuggestion = {

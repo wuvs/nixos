@@ -72,6 +72,10 @@
         };
       };
 
+      nightlight = {
+        enabled = true;
+      };
+
       shell = {
         app_icon_colorize = true;
         lang = "en";
