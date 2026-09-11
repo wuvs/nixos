@@ -22,6 +22,7 @@
     ../../modules/nixos/power.nix
     ../../modules/nixos/printing.nix
     ../../modules/nixos/session.nix
+    ../../modules/nixos/steam.nix
     ../../modules/nixos/users.nix
   ];
 
