@@ -304,12 +304,28 @@
           {_args = [(lib.generators.mkLuaInline ''mod .. " + E"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("nautilus --new-window")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + V"'') (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + P"'') (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + F"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + M"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + T"'') (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + T"'') (lib.generators.mkLuaInline ''function() hl.dispatch(hl.dsp.window.float({ action = "toggle" })); hl.dispatch(hl.dsp.window.pin()) end'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + G"'') (lib.generators.mkLuaInline "hl.dsp.group.toggle()")];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + K"'') (lib.generators.mkLuaInline ''hl.dsp.layout("swapsplit")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + J"'') (lib.generators.mkLuaInline ''hl.dsp.layout("togglesplit")'')];} # dwindle only
 
           {_args = [(lib.generators.mkLuaInline ''mod .. " + left"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "left" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + right"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "right" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + up"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "up" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + down"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "down" })'')];}
+
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + left"'') (lib.generators.mkLuaInline ''hl.dsp.window.swap({ direction = "l" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + right"'') (lib.generators.mkLuaInline ''hl.dsp.window.swap({ direction = "r" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + up"'') (lib.generators.mkLuaInline ''hl.dsp.window.swap({ direction = "u" })'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + down"'') (lib.generators.mkLuaInline ''hl.dsp.window.swap({ direction = "d" })'')];}
+
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + SHIFT + right"'') (lib.generators.mkLuaInline ''hl.dsp.window.resize({ x = 100, y = 0, relative = true })'') {repeating = true;}];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + SHIFT + left"'') (lib.generators.mkLuaInline ''hl.dsp.window.resize({ x = -100, y = 0, relative = true })'') {repeating = true;}];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + SHIFT + down"'') (lib.generators.mkLuaInline ''hl.dsp.window.resize({ x = 0, y = 100, relative = true })'') {repeating = true;}];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + SHIFT + up"'') (lib.generators.mkLuaInline ''hl.dsp.window.resize({ x = 0, y = -100, relative = true })'') {repeating = true;}];}
 
           {_args = [(lib.generators.mkLuaInline ''mod .. " + mouse_down"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + mouse_up"'') (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')];}
@@ -320,6 +336,9 @@
           {_args = [(lib.generators.mkLuaInline ''mod .. " + S"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg panel-toggle control-center")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + comma"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg settings-toggle")'')];}
           {_args = ["ALT + Tab" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg window-switcher")'')];}
+
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + PRINT"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg screenshot-region")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + F"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen")'')];}
 
           {_args = ["XF86AudioRaiseVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-up")'')];}
           {_args = ["XF86AudioLowerVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-down")'')];}
