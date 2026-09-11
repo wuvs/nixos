@@ -32,6 +32,7 @@
       "nvidia-persistenced"
       "nvidia-settings"
       "nvidia-x11"
+      "spotify"
       "steam"
       "steam-original"
       "steam-run"

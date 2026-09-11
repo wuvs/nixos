@@ -1,29 +1,17 @@
-{
-  host,
-  pkgs,
-  ...
-}: {
+{host, ...}: {
   imports = [
-    ./ai/claude.nix
+    ./ai
     ./apps
-    ./browsers/brave-origin.nix
-    ./desktop/hyprland.nix
-    ./desktop/noctalia.nix
-    ./desktop/theming.nix
-    ./dev/git.nix
-    ./dev/ssh.nix
-    ./editors/zed.nix
+    ./browsers
+    ./desktop
+    ./dev
+    ./editors
     ./shell
-    ./terminal/kitty.nix
+    ./terminal
   ];
 
   home.username = host.username;
   home.homeDirectory = "/home/${host.username}";
-
-  home.packages = with pkgs; [
-    nixd
-    alejandra
-  ];
 
   home.stateVersion = host.stateVersion;
 
