@@ -6,6 +6,9 @@
     kubernetes-helm
     kubebuilder
     krew
+    argocd
+    argo-workflows
+    argo-rollouts
   ];
 
   programs.k9s = {
