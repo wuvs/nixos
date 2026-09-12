@@ -1,6 +1,10 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    nixd
-    alejandra
+    binutils
+    gdb
+    gcc
+    gnumake
+    llvm
+    lld
   ];
 }
