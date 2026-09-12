@@ -3,6 +3,7 @@
     ./elixir.nix
     ./git.nix
     ./go.nix
+    ./k8s.nix
     ./nix.nix
     ./node.nix
     ./podman.nix

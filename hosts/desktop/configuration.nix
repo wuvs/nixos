@@ -20,6 +20,7 @@
     ../../modules/nixos/session.nix
     ../../modules/nixos/steam.nix
     ../../modules/nixos/users.nix
+    ../../modules/nixos/virtualisation.nix
   ];
 
   networking.hostName = host.hostName;
