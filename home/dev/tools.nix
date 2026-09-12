@@ -6,5 +6,7 @@
     gnumake
     llvm
     lld
+    wget
+    curl
   ];
 }

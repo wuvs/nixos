@@ -1,4 +1,12 @@
-{host, ...}: {
+{
+  host,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    brightnessctl
+  ];
+
   programs.noctalia = {
     enable = true;
     systemd.enable = true;

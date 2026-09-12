@@ -1,8 +1,4 @@
-{
-  host,
-  pkgs,
-  ...
-}: {
+{host, ...}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -28,14 +24,6 @@
 
   networking.hostName = host.hostName;
   time.timeZone = host.timeZone;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    curl
-    brightnessctl
-  ];
 
   system.stateVersion = host.stateVersion;
 }
