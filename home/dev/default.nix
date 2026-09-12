@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./ansible.nix
     ./elixir.nix
     ./git.nix
     ./go.nix

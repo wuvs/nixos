@@ -5,7 +5,7 @@
     kubectl
     kubernetes-helm
     kubebuilder
-    krew
+    kubectx
     argocd
     argo-workflows
     argo-rollouts
