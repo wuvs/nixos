@@ -10,6 +10,7 @@
       "networkmanager"
       "wheel"
       "lpadmin"
+      "podman"
     ];
     shell = pkgs.zsh;
   };
