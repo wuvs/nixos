@@ -5,6 +5,7 @@
     kubectl
     kubernetes-helm
     kubebuilder
+    krew
   ];
 
   programs.k9s = {
