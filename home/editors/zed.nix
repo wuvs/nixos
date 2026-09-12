@@ -37,6 +37,20 @@
           "**playbook*.yml"
         ];
       };
+      lsp = {
+        yaml-language-server = {
+          settings = {
+            yaml = {
+              schemas = {
+                "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/inventory.json" = [
+                  "./inventory/*.yaml"
+                  "hosts.yml"
+                ];
+              };
+            };
+          };
+        };
+      };
       languages = {
         Nix = {
           language_servers = ["nixd" "!nil"];
