@@ -69,6 +69,7 @@
       "docker-compose"
       "dockerfile"
       "elixir"
+      "git-firefly"
       "helm"
       "html"
       "lua"

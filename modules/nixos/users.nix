@@ -11,6 +11,7 @@
       "wheel"
       "lpadmin"
       "podman"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
   };
