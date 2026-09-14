@@ -8,5 +8,10 @@
     lld
     wget
     curl
+    yq
   ];
+
+  programs.jq = {
+    enable = true;
+  };
 }
