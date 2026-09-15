@@ -9,6 +9,8 @@
     wget
     curl
     yq
+    libosinfo
+    osinfo-db
   ];
 
   programs.jq = {
