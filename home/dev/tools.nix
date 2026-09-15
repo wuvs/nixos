@@ -11,6 +11,7 @@
     yq
     libosinfo
     osinfo-db
+    cloud-utils
   ];
 
   programs.jq = {
