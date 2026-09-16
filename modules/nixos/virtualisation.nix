@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  environment.sessionVariables.LIBVIRT_DEFAULT_URI = "qemu:///system";
+
   virtualisation.podman = {
     enable = true;
     dockerSocket.enable = true;
