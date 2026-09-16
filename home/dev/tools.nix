@@ -12,6 +12,8 @@
     libosinfo
     osinfo-db
     cloud-utils
+    inotify-tools
+    bruno
   ];
 
   programs.jq = {

@@ -34,6 +34,7 @@
       "cups-brother-dcp1610wlpr"
       "discord"
       "discord-unwrapped"
+      "datagrip"
       "nvidia-persistenced"
       "nvidia-settings"
       "nvidia-x11"
