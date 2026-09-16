@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./btop.nix
+    ./discord.nix
     ./fastfetch.nix
     ./htop.nix
     ./naps2.nix

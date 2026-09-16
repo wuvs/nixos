@@ -98,7 +98,7 @@
 
         templates = {
           builtin_ids = ["btop" "gtk3" "gtk4" "hyprland" "kitty" "qt"];
-          community_ids = ["claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf"];
+          community_ids = ["claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf" "discord"];
         };
       };
 

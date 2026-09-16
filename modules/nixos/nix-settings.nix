@@ -32,6 +32,8 @@
       "brother-udev-rule-type1"
       "claude-code"
       "cups-brother-dcp1610wlpr"
+      "discord"
+      "discord-unwrapped"
       "nvidia-persistenced"
       "nvidia-settings"
       "nvidia-x11"
