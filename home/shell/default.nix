@@ -48,5 +48,9 @@
 
   programs.tmux = {
     enable = true;
+    mouse = true;
+    extraConfig = ''
+      source-file themes/noctalia.conf
+    '';
   };
 }
