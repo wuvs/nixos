@@ -7,7 +7,7 @@
       "--enable-features=TouchpadOversrollHistoryNavigation"
     ];
     extensions = [
-      {id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa";}
+      {id = "ghmbeldphafepmbegfdlkpapadhbakde";}
     ];
   };
 }
