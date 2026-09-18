@@ -7,7 +7,7 @@
     ./jetbrains.nix
     ./naps2.nix
     ./nmap.nix
-    ./proton.nix
+    ./proton-vpn.nix
     ./spotify.nix
     ./vlc.nix
   ];
