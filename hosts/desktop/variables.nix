@@ -1,6 +1,6 @@
 {
   username = "wuvs";
-  monitor = "HDMI-A-3";
+  monitor = "desc:LG Electronics LG TV SSCR2 0x01010101";
   mode = "3840x2160@60";
   timeZone = "Asia/Bangkok";
   defaultLocale = "en_US.UTF-8";

@@ -36,7 +36,6 @@ in {
         gtk-menu-images=0
         gtk-enable-event-sounds=1
         gtk-enable-input-feedback-sounds=0
-        gtk-xfg-antialias=1
         gtk-xft-hinting=1
         gtk-xft-hintstyle="hintslight"
         gtk-xft-rgba="rgb"
@@ -51,7 +50,6 @@ in {
         gtk-menu-images = 0;
         gtk-enable-event-sounds = 1;
         gtk-enable-input-feedback-sounds = 0;
-        gtk-xfg-antialias = 1;
         gtk-xft-hinting = 1;
         gtk-xft-hintstyle = "hintslight";
         gtk-xft-rgba = "rgb";

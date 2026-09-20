@@ -9,6 +9,7 @@
 
   virtualisation.libvirtd = {
     enable = true;
+    allowedBridges = ["virbr0"];
     qemu = {
       package = pkgs.qemu_kvm;
       runAsRoot = true;
