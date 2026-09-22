@@ -3,5 +3,6 @@
     ansible
     ansible-lint
     ansible-language-server
+    molecule
   ];
 }
