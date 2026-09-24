@@ -14,6 +14,7 @@
     cloud-utils
     inotify-tools
     bruno
+    scanmem
   ];
 
   programs.jq = {

@@ -39,6 +39,7 @@
       "nvidia-settings"
       "nvidia-x11"
       "spotify"
+      "slack"
       "steam"
       "steam-original"
       "steam-run"
