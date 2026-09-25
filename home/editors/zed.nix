@@ -77,6 +77,7 @@
       "nix"
       "opentofu"
       "toml"
+      "catppuccin-icons"
     ];
   };
 }

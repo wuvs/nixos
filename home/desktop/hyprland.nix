@@ -15,6 +15,19 @@
 
     extraConfig = ''
       require("noctalia").apply_theme()
+
+      local noctalia_colors = require("noctalia").colors
+      hl.config({
+        general = {
+          col = {
+            active_border = {
+              colors = { noctalia_colors.primary, noctalia_colors.secondary },
+              angle = 45,
+            },
+            inactive_border = noctalia_colors.surface,
+          },
+        },
+      })
     '';
 
     settings = {
@@ -31,7 +44,9 @@
 
       env = [
         {_args = ["XCURSOR_SIZE" "24"];}
+        {_args = ["XCURSOR_THEME" "Bibata-Modern-Ice"];}
         {_args = ["HYPRCURSOR_SIZE" "24"];}
+        {_args = ["HYPRCURSOR_THEME" "Bibata-Modern-Ice"];}
         {_args = ["QT_QPA_PLATFORM" "wayland;xcb"];}
         {_args = ["QT_QPA_PLATFORMTHEME" "qt6ct"];}
         {_args = ["QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"];}
@@ -41,9 +56,12 @@
         general = {
           gaps_in = 5;
           gaps_out = 10;
+          border_size = 2;
         };
 
         decoration = {
+          dim_inactive = true;
+          dim_strength = 0.08;
           rounding = 20;
           rounding_power = 2;
 
@@ -56,8 +74,9 @@
 
           blur = {
             enabled = true;
-            size = 3;
-            passes = 2;
+            size = 6;
+            passes = 3;
+            noise = 0.02;
             vibrancy = 0.1696;
           };
         };
@@ -231,27 +250,34 @@
           enabled = true;
           speed = 1.94;
           bezier = "almostLinear";
-          style = "fade";
+          style = "slidefadevert 20%";
         }
         {
           leaf = "workspacesIn";
           enabled = true;
           speed = 1.21;
           bezier = "almostLinear";
-          style = "fade";
+          style = "slidefadevert 20%";
         }
         {
           leaf = "workspacesOut";
           enabled = true;
           speed = 1.94;
           bezier = "almostLinear";
-          style = "fade";
+          style = "slidefadevert 20%";
         }
         {
           leaf = "zoomFactor";
           enabled = true;
           speed = 7;
           bezier = "quick";
+        }
+        {
+          leaf = "borderangle";
+          enabled = true;
+          speed = 75;
+          bezier = "linear";
+          style = "loop";
         }
       ];
 
@@ -302,7 +328,6 @@
           {_args = [(lib.generators.mkLuaInline ''mod .. " + RETURN"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + B"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brave-origin")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + E"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("nautilus --new-window")'')];}
-          {_args = [(lib.generators.mkLuaInline ''mod .. " + V"'') (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + P"'') (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + F"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + M"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })'')];}

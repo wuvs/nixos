@@ -1,11 +1,11 @@
 {pkgs, ...}: let
   mkQtctSettings = name: {
-    Appearnce = {
+    Appearance = {
       color_scheme_path = "$HOME/.config/${name}/colors/noctalia.conf";
       custom_palette = true;
-      icon_theme = "breeze-dark";
+      icon_theme = "kora";
       standard_dialogs = "default";
-      style = "breeze";
+      style = "kora";
     };
 
     Interface = {
@@ -19,7 +19,7 @@
       show_shortcuts_in_context_menus = true;
       toolbutton_style = 4;
       underline_shortcut = 1;
-      wheel_scrool_lines = 3;
+      wheel_scroll_lines = 3;
     };
 
     Troubleshooting = {

@@ -21,7 +21,7 @@
           type = "custom";
         }
         {
-          key = "│ {#34} user    {#keys}│";
+          key = "│ {#34} user    {#keys}│";
           type = "title";
           format = "{user-name}";
         }
@@ -35,7 +35,7 @@
             "!system" = "macOS";
           };
           type = "disk";
-          keyIcon = "";
+          keyIcon = "";
           key = "│{#34} {icon} os age {#keys} │";
           folders = "/";
           format = "{create-time:10} [{days} days ({years} years)]";
@@ -49,11 +49,11 @@
           type = "os";
         }
         {
-          key = "│ {#34} kernel  {#keys}│";
+          key = "│ {#34} kernel  {#keys}│";
           type = "kernel";
         }
         {
-          key = "│ {#34} wm      {#keys}│";
+          key = "│ {#34} wm      {#keys}│";
           type = "wm";
         }
         {
@@ -61,11 +61,11 @@
           type = "de";
         }
         {
-          key = "│ {#34} term    {#keys}│";
+          key = "│ {#34} term    {#keys}│";
           type = "terminal";
         }
         {
-          key = "│ {#34} shell   {#keys}│";
+          key = "│ {#34} shell   {#keys}│";
           type = "shell";
         }
         {
@@ -79,7 +79,7 @@
           folders = "/";
         }
         {
-          key = "│ {#34} memory  {#keys}│";
+          key = "│ {#34} memory  {#keys}│";
           type = "memory";
         }
         {
@@ -87,7 +87,7 @@
           type = "custom";
         }
         {
-          key = "│ {#34} colors  {#keys}│";
+          key = "│ {#34} colors  {#keys}│";
           type = "colors";
           symbol = "circle";
         }

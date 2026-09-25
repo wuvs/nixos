@@ -50,7 +50,7 @@
     enable = true;
     mouse = true;
     extraConfig = ''
-      source-file themes/noctalia.conf
+      source-file ~/.config/tmux/themes/noctalia.conf
     '';
   };
 }
