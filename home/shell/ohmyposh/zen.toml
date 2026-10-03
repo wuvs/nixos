@@ -2,6 +2,9 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
 final_space = true
 
+[palette]
+  grey = '#6c7086'
+
 [secondary_prompt]
   template = '❯❯ '
   foreground = 'magenta'

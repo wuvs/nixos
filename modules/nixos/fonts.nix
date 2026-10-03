@@ -3,11 +3,11 @@
     noto-fonts-color-emoji
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-    fira-sans
+    inter
   ];
 
   fonts.fontconfig.defaultFonts = {
-    sansSerif = ["Fira Sans"];
+    sansSerif = ["Inter Variable"];
     monospace = ["JetBrainsMono Nerd Font"];
     emoji = ["Noto Color Emoji"];
   };

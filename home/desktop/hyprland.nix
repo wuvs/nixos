@@ -6,6 +6,11 @@
 }: {
   xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -17,6 +22,11 @@
       require("noctalia").apply_theme()
 
       local noctalia_colors = require("noctalia").colors
+
+      local function with_alpha(color, alpha)
+        return (color:gsub("^rgb%((%x+)%)$", "rgba(%1" .. alpha .. ")"))
+      end
+
       hl.config({
         general = {
           col = {
@@ -25,6 +35,11 @@
               angle = 45,
             },
             inactive_border = noctalia_colors.surface,
+          },
+        },
+        decoration = {
+          shadow = {
+            color = with_alpha(noctalia_colors.surface, "99"),
           },
         },
       })
@@ -42,16 +57,6 @@
         }
       ];
 
-      env = [
-        {_args = ["XCURSOR_SIZE" "24"];}
-        {_args = ["XCURSOR_THEME" "Bibata-Modern-Ice"];}
-        {_args = ["HYPRCURSOR_SIZE" "24"];}
-        {_args = ["HYPRCURSOR_THEME" "Bibata-Modern-Ice"];}
-        {_args = ["QT_QPA_PLATFORM" "wayland;xcb"];}
-        {_args = ["QT_QPA_PLATFORMTHEME" "qt6ct"];}
-        {_args = ["QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"];}
-      ];
-
       config = {
         general = {
           gaps_in = 5;
@@ -67,9 +72,8 @@
 
           shadow = {
             enabled = true;
-            range = 4;
-            render_power = 3;
-            color = lib.generators.mkLuaInline "0xee1a1a1a";
+            range = 25;
+            render_power = 2;
           };
 
           blur = {
@@ -82,6 +86,7 @@
         };
 
         animations.enabled = true;
+        cursor.inactive_timeout = 5;
         dwindle.preserve_split = true;
         master.new_status = "master";
         scrolling.fullscreen_on_one_column = true;
@@ -320,14 +325,21 @@
           persistent = true;
           default_name = "design";
         }
+        {
+          workspace = "special:dropdown";
+          on_created_empty = "uwsm-app -- kitty --class kitty-dropdown";
+        }
       ];
 
       bind =
         [
           {_args = [(lib.generators.mkLuaInline ''mod .. " + Q"'') (lib.generators.mkLuaInline "hl.dsp.window.close()")];}
-          {_args = [(lib.generators.mkLuaInline ''mod .. " + RETURN"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + RETURN"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm-app -- kitty")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + grave"'') (lib.generators.mkLuaInline ''hl.dsp.workspace.toggle_special("dropdown")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + V"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + L"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg session lock")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + B"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brave-origin")'')];}
-          {_args = [(lib.generators.mkLuaInline ''mod .. " + E"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("nautilus --new-window")'')];}
+          {_args = [(lib.generators.mkLuaInline ''mod .. " + E"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm-app -- kitty yazi")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + P"'') (lib.generators.mkLuaInline "hl.dsp.window.pseudo()")];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + F"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + M"'') (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })'')];}
@@ -365,8 +377,26 @@
           {_args = [(lib.generators.mkLuaInline ''mod .. " + PRINT"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg screenshot-region")'')];}
           {_args = [(lib.generators.mkLuaInline ''mod .. " + ALT + F"'') (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen")'')];}
 
-          {_args = ["XF86AudioRaiseVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-up")'')];}
-          {_args = ["XF86AudioLowerVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-down")'')];}
+          {
+            _args = [
+              "XF86AudioRaiseVolume"
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-up")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86AudioLowerVolume"
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-down")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
           {_args = ["XF86AudioMute" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg volume-mute")'')];}
           {
             _args = [
@@ -378,8 +408,26 @@
               }
             ];
           }
-          {_args = ["XF86MonBrightnessUp" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg brightness-up")'')];}
-          {_args = ["XF86MonBrightnessDown" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg brightness-down")'')];}
+          {
+            _args = [
+              "XF86MonBrightnessUp"
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg brightness-up")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
+          {
+            _args = [
+              "XF86MonBrightnessDown"
+              (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("noctalia msg brightness-down")'')
+              {
+                locked = true;
+                repeating = true;
+              }
+            ];
+          }
 
           {_args = ["XF86AudioNext" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl next")'') {locked = true;}];}
           {_args = ["XF86AudioPause" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl play-pause")'') {locked = true;}];}
@@ -431,6 +479,14 @@
           match.class = "hyprland-run";
           move = "20 monitor_h-120";
           float = true;
+        }
+        {
+          name = "dropdown-terminal";
+          match.class = "^kitty-dropdown$";
+          float = true;
+          size = "monitor_w*0.6 monitor_h*0.6";
+          center = true;
+          workspace = "special:dropdown silent";
         }
       ];
 

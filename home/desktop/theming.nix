@@ -1,11 +1,40 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  gtkSettings = {
+    gtk-enable-event-sounds = 1;
+    gtk-enable-input-feedback-sounds = 0;
+    gtk-xft-antialias = 1;
+    gtk-xft-hinting = 1;
+    gtk-xft-hintstyle = "hintslight";
+    gtk-xft-rgba = "rgb";
+  };
+
+  gtkLegacySettings = {
+    gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
+    gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
+    gtk-button-images = 0;
+    gtk-menu-images = 0;
+  };
+
+  toGtkrc = lib.generators.toKeyValue {
+    mkKeyValue = key: value: let
+      rendered =
+        if builtins.isString value && !(lib.hasPrefix "GTK_" value)
+        then ''"${value}"''
+        else toString value;
+    in "${key}=${rendered}";
+  };
+
   mkQtctSettings = name: {
     Appearance = {
       color_scheme_path = "$HOME/.config/${name}/colors/noctalia.conf";
       custom_palette = true;
       icon_theme = "kora";
-      standard_dialogs = "default";
-      style = "kora";
+      standard_dialogs = "xdgdesktopportal";
+      style = "adwaita-dark";
     };
 
     Interface = {
@@ -28,61 +57,27 @@
   };
 in {
   gtk = {
-    gtk2 = {
-      extraConfig = ''
-        gtk-toolbar-style=GTK_TOOLBAR_ICONS
-        gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-        gtk-button-images=0
-        gtk-menu-images=0
-        gtk-enable-event-sounds=1
-        gtk-enable-input-feedback-sounds=0
-        gtk-xft-hinting=1
-        gtk-xft-hintstyle="hintslight"
-        gtk-xft-rgba="rgb"
-      '';
-    };
+    gtk2.extraConfig = toGtkrc (gtkLegacySettings // gtkSettings);
     gtk3 = {
       colorScheme = "dark";
-      extraConfig = {
-        gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-        gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-        gtk-button-images = 0;
-        gtk-menu-images = 0;
-        gtk-enable-event-sounds = 1;
-        gtk-enable-input-feedback-sounds = 0;
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintslight";
-        gtk-xft-rgba = "rgb";
-      };
+      extraConfig = gtkLegacySettings // gtkSettings;
     };
     gtk4 = {
       colorScheme = "dark";
-      extraConfig = {
-        gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-        gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-        gtk-button-images = 0;
-        gtk-menu-images = 0;
-        gtk-enable-event-sounds = 1;
-        gtk-enable-input-feedback-sounds = 0;
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintslight";
-        gtk-xft-rgba = "rgb";
-      };
+      extraConfig = gtkSettings;
     };
     theme = {
       name = "Adwaita";
       package = pkgs.gnome-themes-extra;
     };
     font = {
-      name = "Fira Sans Semi-Bold";
+      name = "Inter Variable Semi-Bold";
       size = 11;
     };
     enable = true;
 
     iconTheme = {
-      name = "Kora";
+      name = "kora";
       package = pkgs.kora-icon-theme;
     };
 
@@ -98,6 +93,9 @@ in {
     platformTheme = {
       name = "qtct";
     };
+    style = {
+      name = "adwaita-dark";
+    };
 
     qt5ctSettings = mkQtctSettings "qt5ct";
     qt6ctSettings = mkQtctSettings "qt6ct";
@@ -108,5 +106,6 @@ in {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
     size = 24;
+    hyprcursor.enable = true;
   };
 }

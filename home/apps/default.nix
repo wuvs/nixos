@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./bat.nix
     ./btop.nix
     ./discord.nix
     ./fastfetch.nix
@@ -11,5 +12,6 @@
     ./slack.nix
     ./spotify.nix
     ./vlc.nix
+    ./yazi.nix
   ];
 }

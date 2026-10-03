@@ -1,8 +1,13 @@
 {
   host,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  resolution = lib.splitString "x" (builtins.head (lib.splitString "@" host.mode));
+  width = lib.toInt (builtins.elemAt resolution 0);
+  height = lib.toInt (builtins.elemAt resolution 1);
+in {
   home.packages = with pkgs; [
     brightnessctl
   ];
@@ -13,6 +18,7 @@
 
     settings = {
       brightness.sync_all_monitors = true;
+      bar.default.margin_ends = 300;
 
       desktop_widgets.enabled = false;
 
@@ -39,6 +45,8 @@
 
       location.auto_locate = true;
 
+      lockscreen.transition = [];
+
       lockscreen_widgets = {
         enabled = false;
         schema_version = 2;
@@ -53,11 +61,11 @@
         widget."lockscreen-login-box@${host.monitor}" = {
           box_height = 196.0;
           box_width = 810.0;
-          cx = 960.0;
-          cy = 898.0;
+          cx = width / 2.0;
+          cy = height * 898.0 / 1080.0;
           output = host.monitor;
-          placement_height = 1080.0;
-          placement_width = 1920.0;
+          placement_height = height * 1.0;
+          placement_width = width * 1.0;
           rotation = 0.0;
           type = "login_box";
 
@@ -88,6 +96,7 @@
         app_icon_colorize = true;
         lang = "en";
         greeter_sync.auto_sync = true;
+        launch_apps_as_systemd_services = true;
       };
 
       theme = {
@@ -98,7 +107,7 @@
 
         templates = {
           builtin_ids = ["btop" "gtk3" "gtk4" "hyprland" "kitty" "qt"];
-          community_ids = ["claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf" "discord"];
+          community_ids = ["claude-code" "brave-origin" "fastfetch" "pywalfox" "zed" "tmux" "fzf" "discord" "bat" "yazi" "spicetify"];
         };
       };
 

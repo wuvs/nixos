@@ -25,6 +25,8 @@
   ];
 
   networking.hostName = host.hostName;
+  networking.hosts."192.168.122.31" = ["gitlab.home.arpa"];
+  networking.firewall.interfaces.virbr0.allowedTCPPorts = [3100];
   time.timeZone = host.timeZone;
 
   system.stateVersion = host.stateVersion;

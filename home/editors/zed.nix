@@ -3,7 +3,7 @@
     enable = true;
     defaultEditor = true;
     userSettings = {
-      icon_theme = "Catppuccin Mocha";
+      icon_theme = "Material Icon Theme";
       agent_servers = {
         claude-acp = {
           type = "registry";
@@ -77,7 +77,7 @@
       "nix"
       "opentofu"
       "toml"
-      "catppuccin-icons"
+      "material-icon-theme"
     ];
   };
 }
