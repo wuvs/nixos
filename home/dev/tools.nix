@@ -15,6 +15,9 @@
     inotify-tools
     bruno
     scanmem
+    protobuf
+    postgresql
+    buf
   ];
 
   programs.jq = {

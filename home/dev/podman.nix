@@ -9,6 +9,7 @@
       registries.search = [
         "docker.io"
       ];
+      containers.engine.compose_warning_logs = false;
     };
   };
 }

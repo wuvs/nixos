@@ -78,6 +78,8 @@
       "opentofu"
       "toml"
       "material-icon-theme"
+      "proto"
+      "sql"
     ];
   };
 }
